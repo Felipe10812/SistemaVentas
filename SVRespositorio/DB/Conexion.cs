@@ -14,10 +14,9 @@ namespace SVRespositorio.DB
             _cadenaConexion = _configuracion.GetConnectionString("CadenaSQL")!;
         }
 
-        public SqlConnection obtener()
+        public SqlConnection obtenerSQLConexion()
         {
             return new SqlConnection(_cadenaConexion);
         }
-
     }
 }

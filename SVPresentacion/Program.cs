@@ -1,5 +1,9 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SVPresentacion.Formularios;
+using SVRespositorio;
+using SVServices;
 
 namespace SVPresentacion
 {
@@ -15,14 +19,22 @@ namespace SVPresentacion
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
-            Application.Run(new Form1());
+
+            var formService = host.Services.GetRequiredService<frmCategoria>();
+
+            Application.Run(formService);
         }
 
         static IHostBuilder CreateHostBuilder() => Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                });
+                }).ConfigureServices((context, services) =>
+                {
+                    services.DependenciasRepositorioRegistro();
+                    services.DependenciasServiciosRegistro();
 
+                    services.AddTransient<frmCategoria>();
+                });
     }
 }
