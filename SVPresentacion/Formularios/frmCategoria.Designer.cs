@@ -32,8 +32,8 @@
             tabLista = new TabPage();
             dgvCategorias = new DataGridView();
             btnBuscar = new Button();
-            txbBuscar = new TextBox();
-            btnNuevo = new Button();
+            txtBuscar = new TextBox();
+            btnNuevoLista = new Button();
             tabNuevo = new TabPage();
             btnGuardarNuevo = new Button();
             VolverNuevo = new Button();
@@ -46,14 +46,13 @@
             btnVolverEditar = new Button();
             cbbMedidaEditar = new ComboBox();
             lbMedidaEditar = new Label();
-            tbxEditar = new TextBox();
+            txbEditar = new TextBox();
             lbNombreEditar = new Label();
             cbbHabilitadoEditar = new ComboBox();
             lbHabilitadoEditar = new Label();
             label1 = new Label();
             tabControlMain.SuspendLayout();
             tabLista.SuspendLayout();
-            this.Load += new System.EventHandler(this.frmCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
             tabNuevo.SuspendLayout();
             tabEditar.SuspendLayout();
@@ -76,8 +75,8 @@
             // 
             tabLista.Controls.Add(dgvCategorias);
             tabLista.Controls.Add(btnBuscar);
-            tabLista.Controls.Add(txbBuscar);
-            tabLista.Controls.Add(btnNuevo);
+            tabLista.Controls.Add(txtBuscar);
+            tabLista.Controls.Add(btnNuevoLista);
             tabLista.Location = new Point(4, 24);
             tabLista.Name = "tabLista";
             tabLista.Padding = new Padding(3);
@@ -95,6 +94,7 @@
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.Size = new Size(720, 254);
             dgvCategorias.TabIndex = 3;
+            dgvCategorias.CellContentClick += dgvCategorias_CellContentClick;
             // 
             // btnBuscar
             // 
@@ -106,24 +106,26 @@
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
-            // txbBuscar
+            // txtBuscar
             // 
-            txbBuscar.Location = new Point(482, 16);
-            txbBuscar.Name = "txbBuscar";
-            txbBuscar.Size = new Size(151, 23);
-            txbBuscar.TabIndex = 1;
+            txtBuscar.Location = new Point(482, 16);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(151, 23);
+            txtBuscar.TabIndex = 1;
             // 
-            // btnNuevo
+            // btnNuevoLista
             // 
-            btnNuevo.Cursor = Cursors.Hand;
-            btnNuevo.FlatStyle = FlatStyle.Flat;
-            btnNuevo.Location = new Point(5, 15);
-            btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(75, 23);
-            btnNuevo.TabIndex = 0;
-            btnNuevo.Text = "Nuevo";
-            btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevoLista.Cursor = Cursors.Hand;
+            btnNuevoLista.FlatStyle = FlatStyle.Flat;
+            btnNuevoLista.Location = new Point(5, 15);
+            btnNuevoLista.Name = "btnNuevoLista";
+            btnNuevoLista.Size = new Size(75, 23);
+            btnNuevoLista.TabIndex = 0;
+            btnNuevoLista.Text = "Nuevo";
+            btnNuevoLista.UseVisualStyleBackColor = true;
+            btnNuevoLista.Click += btnNuevo_Click;
             // 
             // tabNuevo
             // 
@@ -152,6 +154,7 @@
             btnGuardarNuevo.TabIndex = 5;
             btnGuardarNuevo.Text = "Guardar";
             btnGuardarNuevo.UseVisualStyleBackColor = true;
+            btnGuardarNuevo.Click += btnGuardarNuevo_Click;
             // 
             // VolverNuevo
             // 
@@ -163,13 +166,14 @@
             VolverNuevo.TabIndex = 4;
             VolverNuevo.Text = "Volver";
             VolverNuevo.UseVisualStyleBackColor = true;
+            VolverNuevo.Click += VolverNuevo_Click;
             // 
             // cbbMedidaNuevo
             // 
             cbbMedidaNuevo.Cursor = Cursors.Hand;
             cbbMedidaNuevo.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbMedidaNuevo.FormattingEnabled = true;
-            cbbMedidaNuevo.Location = new Point(94, 49);
+            cbbMedidaNuevo.Location = new Point(94, 48);
             cbbMedidaNuevo.Name = "cbbMedidaNuevo";
             cbbMedidaNuevo.Size = new Size(159, 23);
             cbbMedidaNuevo.TabIndex = 3;
@@ -177,7 +181,7 @@
             // lbMedida
             // 
             lbMedida.AutoSize = true;
-            lbMedida.Location = new Point(16, 52);
+            lbMedida.Location = new Point(16, 51);
             lbMedida.Name = "lbMedida";
             lbMedida.Size = new Size(53, 15);
             lbMedida.TabIndex = 2;
@@ -205,7 +209,7 @@
             tabEditar.Controls.Add(btnVolverEditar);
             tabEditar.Controls.Add(cbbMedidaEditar);
             tabEditar.Controls.Add(lbMedidaEditar);
-            tabEditar.Controls.Add(tbxEditar);
+            tabEditar.Controls.Add(txbEditar);
             tabEditar.Controls.Add(lbNombreEditar);
             tabEditar.Controls.Add(cbbHabilitadoEditar);
             tabEditar.Controls.Add(lbHabilitadoEditar);
@@ -228,6 +232,7 @@
             btnGuardarEditar.TabIndex = 15;
             btnGuardarEditar.Text = "Guardar";
             btnGuardarEditar.UseVisualStyleBackColor = true;
+            btnGuardarEditar.Click += btnGuardarEditar_Click;
             // 
             // btnVolverEditar
             // 
@@ -239,6 +244,7 @@
             btnVolverEditar.TabIndex = 14;
             btnVolverEditar.Text = "Volver";
             btnVolverEditar.UseVisualStyleBackColor = true;
+            btnVolverEditar.Click += btnVolverEditar_Click;
             // 
             // cbbMedidaEditar
             // 
@@ -259,12 +265,12 @@
             lbMedidaEditar.TabIndex = 12;
             lbMedidaEditar.Text = "Medida: ";
             // 
-            // tbxEditar
+            // txbEditar
             // 
-            tbxEditar.Location = new Point(94, 11);
-            tbxEditar.Name = "tbxEditar";
-            tbxEditar.Size = new Size(159, 23);
-            tbxEditar.TabIndex = 11;
+            txbEditar.Location = new Point(94, 11);
+            txbEditar.Name = "txbEditar";
+            txbEditar.Size = new Size(159, 23);
+            txbEditar.TabIndex = 11;
             // 
             // lbNombreEditar
             // 
@@ -314,6 +320,7 @@
             Name = "frmCategoria";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCategoria";
+            Load += frmCategoria_Load;
             tabControlMain.ResumeLayout(false);
             tabLista.ResumeLayout(false);
             tabLista.PerformLayout();
@@ -335,8 +342,8 @@
         private TabPage tabEditar;
         private DataGridView dgvCategorias;
         private Button btnBuscar;
-        private TextBox txbBuscar;
-        private Button btnNuevo;
+        private TextBox txtBuscar;
+        private Button btnNuevoLista;
         private Label lbNombre;
         private ComboBox cbbMedidaNuevo;
         private Label lbMedida;
@@ -347,7 +354,7 @@
         private Button btnVolverEditar;
         private ComboBox cbbMedidaEditar;
         private Label lbMedidaEditar;
-        private TextBox tbxEditar;
+        private TextBox txbEditar;
         private Label lbNombreEditar;
         private ComboBox cbbHabilitadoEditar;
         private Label lbHabilitadoEditar;

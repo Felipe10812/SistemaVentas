@@ -34,7 +34,7 @@ namespace SVRespositorio.Implementacion
                             Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                             Abreviatura = dr.GetString(dr.GetOrdinal("Abreviatura")),
                             Equivalencia = dr.GetString(dr.GetOrdinal("Equivalencia")),
-                            Valor = dr.GetDouble(dr.GetOrdinal("Valor"))
+                            Valor = dr.GetInt32(dr.GetOrdinal("Valor"))
                         });
                     }
                 }

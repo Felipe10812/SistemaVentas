@@ -22,30 +22,38 @@ namespace SVPresentacion.Utilidades
 
             dataGrid.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
-                BackColor = Color.FromArgb(58, 49, 69),
-                SelectionBackColor = Color.FromArgb(58, 49, 69),
-                ForeColor = Color.FromArgb(255, 255, 255),
+                BackColor = AppColors.RojoOscuro,
+                SelectionBackColor = AppColors.RojoOscuro,
+                ForeColor = Color.White,
             };
 
             dataGrid.DefaultCellStyle = new DataGridViewCellStyle
             {
-                SelectionBackColor = Color.FromArgb(58, 49, 69),
-                SelectionForeColor = Color.FromArgb(255, 255, 255),
+                SelectionBackColor = AppColors.RojoMedio,
+                SelectionForeColor = Color.White,
             };
 
             dataGrid.ColumnHeadersHeight = 40;
             dataGrid.EnableHeadersVisualStyles = false;
             dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
 
-            if(textoEnBoton != "")
+            if (!dataGrid.Columns.Contains("ColumnaAccion"))
             {
-                var btnEditarColumn = new DataGridViewButtonColumn();
-                btnEditarColumn.Name = "ColumnaAccion";
-                btnEditarColumn.Text = textoEnBoton;
-                btnEditarColumn.HeaderText = "";
-                btnEditarColumn.UseColumnTextForButtonValue = true;
-                btnEditarColumn.Width = 60;
-                btnEditarColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                var btnEditarColumn = new DataGridViewButtonColumn
+                {
+                    Name = "ColumnaAccion",
+                    Text = textoEnBoton,
+                    HeaderText = "",
+                    UseColumnTextForButtonValue = true,
+                    Width = 60,
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells,
+                    DefaultCellStyle = new DataGridViewCellStyle
+                    {
+                        BackColor = AppColors.RojoOscuro,
+                        SelectionBackColor = AppColors.RojoOscuro,
+                        ForeColor = Color.White,
+                    }
+                };
                 dataGrid.Columns.Add(btnEditarColumn);
             }
         }

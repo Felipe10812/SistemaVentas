@@ -59,7 +59,7 @@ namespace SVRespositorio.Implementacion
                 var cmd = new SqlCommand("sp_crearCategoria", con);
 
                 cmd.Parameters.AddWithValue("@Nombre", categoria.Nombre);
-                cmd.Parameters.AddWithValue("@IdMedida", categoria.RefIdMedida);
+                cmd.Parameters.AddWithValue("@IdMedida", categoria.RefIdMedida.IdMedida);
                 cmd.Parameters.Add("@MsjError", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
 
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -88,7 +88,7 @@ namespace SVRespositorio.Implementacion
 
                 cmd.Parameters.AddWithValue("@IdCategoria", categoria.IdCategoria);
                 cmd.Parameters.AddWithValue("@Nombre", categoria.Nombre);
-                cmd.Parameters.AddWithValue("@IdMedida", categoria.RefIdMedida);
+                cmd.Parameters.AddWithValue("@IdMedida", categoria.RefIdMedida.IdMedida);
                 cmd.Parameters.AddWithValue("@Activo", categoria.Activo);
                 cmd.Parameters.Add("@MsjError", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
 

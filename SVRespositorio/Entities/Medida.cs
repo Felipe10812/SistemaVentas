@@ -7,6 +7,6 @@
         public string Nombre { get; set; }
         public string Abreviatura { get; set; }
         public string Equivalencia { get; set; }
-        public double Valor { get; set; }
+        public int Valor { get; set; }
     }
 }
