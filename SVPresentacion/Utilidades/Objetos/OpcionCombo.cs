@@ -5,6 +5,5 @@ namespace SVPresentacion.Utilidades.Objetos
     {
         public string Texto { get; set; }
         public int Valor { get; set; }
-       
     }
 }

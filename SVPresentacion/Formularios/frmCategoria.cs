@@ -71,6 +71,7 @@ namespace SVPresentacion.Formularios
 
         private async void frmCategoria_Load(object sender, EventArgs e)
         {
+            this.BackColor = AppColors.AzulMedio;
             MostrarTab(tabLista.Name);
             await CargarDatos();
         }

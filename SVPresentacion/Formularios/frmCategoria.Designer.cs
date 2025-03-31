@@ -50,7 +50,7 @@
             lbNombreEditar = new Label();
             cbbHabilitadoEditar = new ComboBox();
             lbHabilitadoEditar = new Label();
-            label1 = new Label();
+            lbCategoria = new Label();
             tabControlMain.SuspendLayout();
             tabLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
@@ -64,7 +64,7 @@
             tabControlMain.Controls.Add(tabNuevo);
             tabControlMain.Controls.Add(tabEditar);
             tabControlMain.ItemSize = new Size(80, 20);
-            tabControlMain.Location = new Point(3, 51);
+            tabControlMain.Location = new Point(12, 46);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
             tabControlMain.Size = new Size(740, 344);
@@ -300,21 +300,23 @@
             lbHabilitadoEditar.TabIndex = 8;
             lbHabilitadoEditar.Text = "Habilitado:";
             // 
-            // label1
+            // lbCategoria
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(122, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Inventario / Categoria";
+            lbCategoria.AutoSize = true;
+            lbCategoria.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lbCategoria.ForeColor = SystemColors.InactiveBorder;
+            lbCategoria.Location = new Point(16, 10);
+            lbCategoria.Name = "lbCategoria";
+            lbCategoria.Size = new Size(178, 21);
+            lbCategoria.TabIndex = 1;
+            lbCategoria.Text = "Inventario / Categoria";
             // 
             // frmCategoria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(746, 407);
-            Controls.Add(label1);
+            ClientSize = new Size(764, 407);
+            Controls.Add(lbCategoria);
             Controls.Add(tabControlMain);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmCategoria";
@@ -338,7 +340,7 @@
         private TabControl tabControlMain;
         private TabPage tabLista;
         private TabPage tabNuevo;
-        private Label label1;
+        private Label lbCategoria;
         private TabPage tabEditar;
         private DataGridView dgvCategorias;
         private Button btnBuscar;

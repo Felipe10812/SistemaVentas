@@ -3,9 +3,19 @@ namespace SVPresentacion.Utilidades
 {
     class AppColors
     {
-        public static Color FondoOscuro = ColorTranslator.FromHtml("#09122C");
-        public static Color RojoOscuro = ColorTranslator.FromHtml("#872341");
-        public static Color RojoMedio = ColorTranslator.FromHtml("#BE3144");
-        public static Color RojoClaro = ColorTranslator.FromHtml("#E17564");
+        // Para fondos
+        public static Color AzulOscuroProfundo = ColorTranslator.FromHtml("#021526");
+
+        // Para botones primarios
+        public static Color AzulOscuro = ColorTranslator.FromHtml("#03346E");
+
+        // Para acentos
+        public static Color AzulMedio = ColorTranslator.FromHtml("#6EACDA");
+        
+        // Para fondos claros
+        public static Color CremaClaro = ColorTranslator.FromHtml("#E2E2B6");
+        
+        // Para fondos oscuros
+        public static Color AzulMedioTransparente = Color.FromArgb(128, 110, 172, 218);
     }
 }
