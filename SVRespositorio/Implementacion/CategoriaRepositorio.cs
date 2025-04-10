@@ -1,11 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client;
 using SVRespositorio.DB;
 using SVRespositorio.Entities;
 using SVRespositorio.Interfaces;
 using System.Data;
-using System.Security.Cryptography.Pkcs;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SVRespositorio.Implementacion
 {

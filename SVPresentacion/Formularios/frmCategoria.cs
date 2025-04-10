@@ -3,7 +3,6 @@ using SVPresentacion.Utilidades.Objetos;
 using SVPresentacion.ViewModels;
 using SVRespositorio.Entities;
 using SVServices.Interfaces;
-using System.Xml.Schema;
 
 namespace SVPresentacion.Formularios
 {

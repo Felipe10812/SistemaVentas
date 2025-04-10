@@ -35,7 +35,7 @@ namespace SVRespositorio.Implementacion
                             RefIdCategoria = new Categoria
                             {
                                 IdCategoria = dr.GetInt32(dr.GetOrdinal("IdCategoria")),
-                                Nombre = dr.GetString(dr.GetOrdinal("NombreCategoria")),
+                                Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                             },
                             Codigo = dr.GetString(dr.GetOrdinal("Codigo")),
                             Descripcion = dr.GetString(dr.GetOrdinal("Nombre")),
