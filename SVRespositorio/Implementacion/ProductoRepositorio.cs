@@ -38,7 +38,7 @@ namespace SVRespositorio.Implementacion
                                 Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                             },
                             Codigo = dr.GetString(dr.GetOrdinal("Codigo")),
-                            Descripcion = dr.GetString(dr.GetOrdinal("Nombre")),
+                            Descripcion = dr.GetString(dr.GetOrdinal("Descripcion")),
                             PrecioCompra = dr.GetDecimal(dr.GetOrdinal("PrecioCompra")),
                             PrecioVenta = dr.GetDecimal(dr.GetOrdinal("PrecioVenta")),
                             Cantidad = dr.GetDecimal(dr.GetOrdinal("Cantidad")),
