@@ -1,6 +1,7 @@
 ﻿using SVPresentacion.Utilidades;
 using SVRespositorio.Entities;
 using SVServices.Interfaces;
+using SVServices.Recursos.Cloudinary;
 
 namespace SVPresentacion.Formularios
 {
@@ -26,7 +27,7 @@ namespace SVPresentacion.Formularios
 
         private async Task CargarDatos()
         {
-            _openFileDialog.Filter = "Escoger imagen (*.jpg, *.png)|*.jpg;*.png";
+            _openFileDialog.Filter = "Escoger imagen (*.jpg, *.png) | *.jpg;*.png";
             pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
 
             _negocio = await _negocioService.Obtener();
@@ -53,9 +54,52 @@ namespace SVPresentacion.Formularios
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                CloudinaryResponse cloudinaryResponse = new CloudinaryResponse();
+                Negocio negocio = new Negocio();
+                if (_openFileDialog.FileName != "")
+                {
+                    cloudinaryResponse = await _cloudinaryService.SubirImagen(_openFileDialog.SafeFileName, _openFileDialog.OpenFile());
+                    if (cloudinaryResponse.PublicId != "")
+                    {
+                        if (_negocio.NombreLogo != "")
+                            await _cloudinaryService.EliminarImagen(_negocio.NombreLogo);
+                        negocio.NombreLogo = cloudinaryResponse.PublicId;
+                        negocio.URLLogo = cloudinaryResponse.SecureUrl;
 
+                        _negocio.NombreLogo = cloudinaryResponse.PublicId;
+                        _negocio.URLLogo = cloudinaryResponse.SecureUrl;
+                    }
+                }
+                else
+                {
+                    negocio.NombreLogo = _negocio.NombreLogo;
+                    negocio.URLLogo = _negocio.URLLogo;
+                }
+
+                negocio.RazonSocial = txbRazonSocial.Text;
+                negocio.RFC = txbRFC.Text;
+                negocio.Direccion = txbDireccion.Text;
+                negocio.Celular = txbCelular.Text;
+                negocio.Correo = txbCorreo.Text;
+                negocio.SimboloMoneda = txbSimboloMoneda.Text;
+
+                await _negocioService.Editar(negocio);
+
+                MessageBox.Show("Negocio guardado correctamente.",
+                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txbRutaImagen.Text = "";
+                _openFileDialog = new OpenFileDialog();
+                _openFileDialog.Filter = "Escoger imagen (*.jpg, *.png) | *.jpg;*.png";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error inesperado al guardar el negocio. Intente nuevamente.",
+                                "Error inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

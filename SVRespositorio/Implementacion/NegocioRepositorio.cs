@@ -37,7 +37,8 @@ namespace SVRespositorio.Implementacion
                             Correo = dr.GetString(dr.GetOrdinal("Correo")),
                             SimboloMoneda = dr.GetString(dr.GetOrdinal("SimboloMoneda")),
                             NombreLogo = dr.GetString(dr.GetOrdinal("NombreLogo")),
-                            URLLogo = dr.GetString(dr.GetOrdinal("URLLogo"))
+                            URLLogo = dr.GetString(dr.GetOrdinal("URLLogo")),
+                            IdNegocio = dr.GetInt32(dr.GetOrdinal("IdNegocio")),
                         };
                     }
                 }
@@ -61,7 +62,7 @@ namespace SVRespositorio.Implementacion
                 cmd.Parameters.AddWithValue("@NombreLogo", negocio.NombreLogo);
                 cmd.Parameters.AddWithValue("@URLLogo", negocio.URLLogo);
                 cmd.Parameters.AddWithValue("@IdNegocio", negocio.IdNegocio);
-                //cmd.Parameters.Add("@MsjError", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@MsjError", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
