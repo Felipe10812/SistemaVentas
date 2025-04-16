@@ -13,6 +13,7 @@ namespace SVRespositorio
             services.AddTransient<IMedidaRepositorio, MedidaRepositorio>();
             services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
             services.AddTransient<IProductoRepositorio, ProductoRepositorio>();
+            services.AddTransient<INegocioRepositorio, NegocioRepositorio>();
         }
     }
 }
