@@ -1,4 +1,5 @@
-﻿//using CloudinaryDotNet;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Configuration;
 using SVServices.Interfaces;
 using SVServices.Recursos.Cloudinary;
@@ -9,7 +10,7 @@ namespace SVServices.Implementacion
     public class CloudinaryService : ICloudinaryService
     {
         private readonly IConfiguration _configuracion;
-        //private readonly Cloudinary _cloudinary;
+        private readonly Cloudinary _cloudinary;
 
         public CloudinaryService(IConfiguration configuration)
         {
@@ -19,48 +20,46 @@ namespace SVServices.Implementacion
             var ApiKey = _configuracion["Cloudinary:ApiKey"];
             var ApiSecret = _configuracion["Cloudinary:ApiSecret"];
 
-            //_cloudinary = new Cloudinary(new Account(CloudName, ApiKey, ApiSecret));
+            _cloudinary = new Cloudinary(new Account(CloudName, ApiKey, ApiSecret));
         }
 
         public async Task<CloudinaryResponse> SubirImagen(string nombreImagen, Stream formatoImagen)
         {
-            //var cloudinaryResponse = new CloudinaryResponse();
-            //var uploadParams = new ImageUploadParams()
-            //{
-            //    //File = new FileDescription(nombreImagen, formatoImagen), 
-            //    AssetFolder = "SistemaVenta"
-            //};
+            var cloudinaryResponse = new CloudinaryResponse();
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(nombreImagen, formatoImagen),
+                AssetFolder = "SistemaVenta"
+            };
 
-            ////var UploadResult = await _cloudinary.UploadAsync(uploadParams);
+            var uploadResult = await _cloudinary.UploadAsync(uploadParams);
 
-            //if (UploadResult.StatusCode == HttpStatusCode.OK)
-            //{
-            //    cloudinaryResponse.PublicId = uploadParams.PublicId;
-            //    cloudinaryResponse.SecureUrl = uploadParams.SecureUrl.ToString();
-            //}
-            //else
-            //{
-            //    cloudinaryResponse.PublicId = "";
-            //}
-            throw new NotImplementedException();
+            if (uploadResult.StatusCode == HttpStatusCode.OK)
+            {
+                cloudinaryResponse.PublicId = uploadResult.PublicId;
+                cloudinaryResponse.SecureUrl = uploadResult.SecureUrl.ToString(); // Convert Uri to string
+            }
+            else
+            {
+                cloudinaryResponse.PublicId = "";
+            }
 
+            return cloudinaryResponse;
         }
 
         public async Task<bool> EliminarImagen(string publicId)
         {
-            //var deleteParams = new DeletionParams(publicId);
-            //var deleteResult = await _cloudinary.DestroyAsync(deleteParams);
+            var deleteParams = new DeletionParams(publicId);
+            var deleteResult = await _cloudinary.DestroyAsync(deleteParams);
 
-            //if (deleteResult.StatusCode == HttpStatusCode.OK)
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            throw new NotImplementedException();
-
+            if (deleteResult.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ namespace SVRespositorio
             services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
             services.AddTransient<IProductoRepositorio, ProductoRepositorio>();
             services.AddTransient<INegocioRepositorio, NegocioRepositorio>();
+            services.AddTransient<IRolRepositorio, RolRepositorio>();
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
         }
     }
 }
